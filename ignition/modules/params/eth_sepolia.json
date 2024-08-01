@@ -1,0 +1,7 @@
+{
+    "TokenBeam": {
+      "cfVault": "0x36eaD71325604DC15d35FAE584D7b50646D81753",
+      "weth": "0xfFf9976782d46CC05630D1f6eBAb18b2324d6B14",
+      "uniswapV3Factory": "0x0227628f3F023bb0B980b67D528571c95c6DaC1c"
+    }
+  }

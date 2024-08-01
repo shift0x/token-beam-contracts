@@ -16,6 +16,10 @@ module.exports = {
     local: {
       url: "http://127.0.0.1:8545"
     },
+    eth_sepolia: {
+      url: "https://ethereum-sepolia-rpc.publicnode.com	",
+      accounts: [ vars.get("SMART_CONTRACT_DEPLOYER") ],
+    },
     arbitrum: {
       url: "https://arb1.arbitrum.io/rpc",
       accounts: [ vars.get("SMART_CONTRACT_DEPLOYER") ],

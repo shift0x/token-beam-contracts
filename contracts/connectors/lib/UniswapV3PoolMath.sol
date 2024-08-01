@@ -22,7 +22,10 @@ library UniswapV3PoolMath {
         return sqrtX96Price;
     }
 
-    function getUniswapV3PoolSpotPrice(address pool, address tokenIn) internal view returns (uint256) {
+    function getUniswapV3PoolSpotPrice(
+        address pool, 
+        address tokenIn
+    ) internal view returns (uint256) {
         uint256 quote = getUniswapV3PoolQuote(pool);
         uint256 fee = IUniswapV3PoolImmutables(pool).fee();
 
@@ -34,7 +37,9 @@ library UniswapV3PoolMath {
         return spotPriceWithFee;
     }
 
-    function getUniswapV3PoolQuote(address pool) internal view returns (uint256) {
+    function getUniswapV3PoolQuote(
+        address pool
+    ) internal view returns (uint256) {
         uint160 sqrtX96Price = getUniswapV3SqrtX96Price(pool);
 
         uint256 token0Decimals = IERC20(IUniswapV3PoolImmutables(pool).token0()).decimals();
@@ -45,7 +50,11 @@ library UniswapV3PoolMath {
         return price;
     }
 
-    function getPriceFromSqrtX96Price(uint160 sqrtX96Price, uint256 token0Decimals, uint256 token1Decimals) internal pure returns (uint256) {
+    function getPriceFromSqrtX96Price(
+        uint160 sqrtX96Price, 
+        uint256 token0Decimals, 
+        uint256 token1Decimals
+    ) internal pure returns (uint256) {
         return FullMath.mulDiv(uint256(sqrtX96Price) * uint256(sqrtX96Price), 10**token0Decimals, 1 << 192)* 10**(18-token1Decimals);
     }
 
