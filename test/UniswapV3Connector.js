@@ -11,7 +11,6 @@ const USDC = "0xaf88d065e77c8cc2239327c5edb3a432268e5831"
 const WETH_WBTC_POOL = "0x2f5e87C9312fa29aed5c179E456625D79015299c"
 
 async function setup(){
-    // build the inital set of default quoters. These can be overriden later by the admin
     const contract = await ethers.getContractFactory("UniswapV3Connector");
     
     const connector = await contract.deploy(uniswapV3Factory);

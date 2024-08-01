@@ -6,6 +6,8 @@ import './interfaces/IWETH.sol';
 import './interfaces/IERC20.sol';
 import './interfaces/ITokenBeamRouter.sol';
 
+import 'hardhat/console.sol';
+
 contract TokenBeamRouter is ITokenBeamRouter {
     address constant private NATIVE_TOKEN = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
@@ -49,7 +51,7 @@ contract TokenBeamRouter is ITokenBeamRouter {
         (address receiver, address tokenIn, address tokenOut, address executor) = abi.decode(message, (address, address, address, address));
 
         if(tokenIn == _weth){
-            IWETH(_weth).withdraw(amount);
+            IWETH(_weth).deposit{value:amount}();
         } else {
             require(token == tokenIn, "TokenBeamRouter: unexpected input token");
         }
@@ -70,7 +72,7 @@ contract TokenBeamRouter is ITokenBeamRouter {
         if(tokenIn == _weth){
             require(msg.value == amountIn, "TokenBeamRouter: unexpected input amount");
 
-            IWETH(_weth).withdraw(amountIn);
+            IWETH(_weth).deposit{value:amountIn}();
             IERC20(_weth).transfer(executor, amountIn);
         } else {
             IERC20(tokenIn).transferFrom(msg.sender, executor, amountIn);
